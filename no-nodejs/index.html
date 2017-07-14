@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Vue.js Extensible Grid</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"></link>
+<script src="https://unpkg.com/vue"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+}
+/* hgrid */
+.hgrid {
+  display: flex;
+  flex-flow: column;
+}
+.hgrid-box {
+  display: flex;
+  /* vgridのために必要 */
+  flex-flow: column;
+  min-height: 400px;
+}
+.hflex {
+  flex: 1;
+}
+.non-hflex {
+  height: 100%;
+}
+/* vgrid */
+.vgrid {
+  flex: 1; /* hgrid-boxのflex子要素*/
+  display: flex;
+  flex-flow: row;
+}
+.vgrid-box {
+  display: flex;
+  flex-flow: row;
+  min-width: 100px;
+}
+.vflex {
+  flex: 1;
+}
+.not-vflex {
+  width: auto;
+}
+/* content */
+.content {
+  flex: 1;
+  background: #1d1f20;
+  color: #eee;
+}
+/* pusher */
+.pusher {
+  /* flexを利用した文字の中央揃え */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 1.2rem bold;
+  color: #eee;
+  background: #999;
+  cursor: pointer;
+}
+.pusher.vertical:hover,
+.pusher.horizontal:hover {
+  background: #777;
+}
+.pusher.vertical {
+  width: 1.5rem;
+  min-width: 1.5rem;
+}
+.pusher.horizontal {
+  height: 1.5rem;
+}
+/* resizer */
+.resizer {
+  background: #343436;
+}
+.resizer.horizontal {
+  height: 1.5rem;
+  cursor: ns-resize;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.4);
+}
+.resizer.vertical {
+  width: 1.5rem;
+  min-width: 1.5rem;
+  cursor: ew-resize;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  border-right: 1px solid rgba(0,0,0,0.4);
+}
+html.handle-dragging * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+html.handle-dragging.vertical * { cursor: ew-resize; }
+html.handle-dragging.horizontal * { cursor: ns-resize; }
+html.handle-dragging iframe { pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="app">
+  <grid></grid>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
